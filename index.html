@@ -1,1 +1,126 @@
- 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anavrim Moema</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header/Navbar -->
+    <header class="navbar">
+        <div class="navbar-container">
+            <div class="logo">
+                <img src="assets/logo-moema.svg" alt="Anavrim">
+                Anavrim
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="#unidades">Unidades</a></li>
+                    <li><a href="#terapeutas">Terapeutas</a></li>
+                    <li><a href="#massagens">Massagens</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                    <li><a href="admin.html" class="admin-btn">Admin</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger" aria-label="Abrir menu" tabindex="0">
+                    <span></span><span></span><span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <img src="https://backend-production-d1a8.up.railway.app/assets/banner-moema.jpg" alt="Banner Anavrim" class="hero-bg">
+        <div class="hero-content">
+            <h1 class="hero-title">Casa de Massagem em São Paulo</h1>
+            <p class="hero-desc">No Anavrim, oferecemos o que há de melhor em relaxamento e bem-estar. Somos a casa de massagem em São Paulo ideal para quem busca equilíbrio e tranquilidade em um ambiente sofisticado e acolhedor.</p>
+            <a href="#unidades" class="hero-btn">Escolha a unidade mais próxima</a>
+        </div>
+    </section>
+    <!-- Diferenciais Section -->
+    <section class="diferenciais diferenciais-dark">
+        <div class="diferenciais-icons">
+            <div class="diferencial-item">
+                <img src="assets/icon-produtos.svg" alt="Produtos Relaxantes" class="diferencial-icon">
+                <div class="diferencial-title">Produtos Relaxantes</div>
+            </div>
+            <div class="diferencial-item">
+                <img src="assets/icon-atendimento.svg" alt="Atendimento Personalizado" class="diferencial-icon">
+                <div class="diferencial-title">Atendimento Personalizado</div>
+            </div>
+            <div class="diferencial-item">
+                <img src="assets/icon-ambiente.svg" alt="Ambiente Privado" class="diferencial-icon">
+                <div class="diferencial-title">Ambiente Privado</div>
+            </div>
+            <div class="diferencial-item">
+                <img src="assets/icon-tecnologia.svg" alt="Tecnologia de Ponta" class="diferencial-icon">
+                <div class="diferencial-title">Tecnologia de Ponta</div>
+            </div>
+        </div>
+    </section>
+    <!-- Unidades Section -->
+    <section class="unidades" id="unidades">
+        <h2 class="unidades-title">Escolha a Casa de Massagem mais próxima a você!</h2>
+        <div class="cards-unidades">
+            <div class="card-unidade">
+                <div class="card-unidade-title">Anavrim</div>
+                <div class="card-unidade-desc">Ambiente exclusivo e sofisticado, ideal para quem busca relaxamento profundo e bem-estar em São Paulo.</div>
+            </div>
+            <div class="card-unidade">
+                <div class="card-unidade-title">Anavrim Anália Franco</div>
+                <div class="card-unidade-desc">Ambiente sofisticado e privativo, ideal para quem deseja momentos de tranquilidade e cuidado com o bem-estar.</div>
+            </div>
+        </div>
+    </section>
+    <!-- Terapeutas Section -->
+    <section class="terapeutas" id="terapeutas">
+        <h2 class="terapeutas-title">Conheça as terapeutas da nossa clínica de massagem em São Paulo</h2>
+        <div id="cards-meninas" style="display: flex; flex-wrap: wrap; gap: 2em; justify-content: center;"></div>
+    </section>
+    <!-- Massagens Section -->
+    <section class="massagens" id="massagens">
+        <h2 class="massagens-title">Tipos de massagem oferecidas</h2>
+        <p class="massagens-desc">No Anavrim, oferecemos uma seleção de massagens projetadas para promover relaxamento profundo e bem-estar. Nossas técnicas são focadas em proporcionar equilíbrio e conforto em cada sessão.</p>
+    </section>
+    <!-- Footer -->
+    <footer class="footer" id="contato">
+        © 2024 Anavrim. Todos os direitos reservados.
+    </footer>
+    <!-- WhatsApp Flutuante -->
+    <a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp">
+        <img src="assets/whatsapp.svg" alt="WhatsApp">
+    </a>
+    
+    <script src="scripts.js"></script>
+    <script>
+    // Configuração da API - PRODUÇÃO
+    const API_URL = 'https://backend-production-d1a8.up.railway.app/api';
+    
+    async function carregarMeninas() {
+      try {
+        const res = await fetch(`${API_URL}/meninas`);
+        const meninas = await res.json();
+        const container = document.getElementById('cards-meninas');
+        container.innerHTML = '';
+        meninas.forEach(menina => {
+          container.innerHTML += `
+            <div class="card-menina" style="background: #2a0d13; border-radius: 16px; box-shadow: 0 2px 8px #0002; padding: 1.5em; width: 260px; display: flex; flex-direction: column; align-items: center; margin-bottom: 2em; border: 2px solid #b3005e;">
+              <img src="https://backend-production-d1a8.up.railway.app${menina.foto}" alt="${menina.nome}" style="width: 180px; height: 240px; object-fit: cover; border-radius: 12px; margin-bottom: 1em;">
+              <h3 style="color: #ff4fa3; margin-bottom: 0.5em;">${menina.nome.charAt(0).toUpperCase() + menina.nome.slice(1)}</h3>
+              <p style="color: #fff; text-align: center;">${menina.descricao}</p>
+            </div>
+          `;
+        });
+      } catch (error) {
+        console.error('Erro ao carregar meninas:', error);
+        const container = document.getElementById('cards-meninas');
+        container.innerHTML = '<p style="color: #fff; text-align: center;">Carregando terapeutas...</p>';
+      }
+    }
+    
+    document.addEventListener('DOMContentLoaded', carregarMeninas);
+    </script>
+</body>
+</html> 
